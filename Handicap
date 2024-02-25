@@ -1,0 +1,62 @@
+#Handicap
+#In short, handicapping NFL games is ridcioualsoy time consuming and has already been done by tons of people. 
+# Thus, I chose a power rating system that a few pro gamblers have recommended checking out. 
+# I will need to mine and clean this to make this a true CS project but I have wasted a lot of time already. 
+
+# I understand that finding the team by the array location is going to seem like an easy way to make errors. 
+# Due dillignece and attention to detail is required. 
+# The reason why I am doing this is because the power ratings and position of the teams will change weekly. 
+# Furthermore, this would require more websites and twitter feeds than I care to imainge at the moment. 
+
+# With all of this typed... I do plan to continue working on this system and eventually developing a a machine that
+#1. mines and cleans data from the web
+#2. requires minimal user inputs 
+#3. actually contains a ML program that predicts winners
+
+#These are all long term goals. 
+
+#Databse for odds of landing on a umber in an NFL Game.
+#Chances of hitting point spreads in decimal form
+import pandas as pd
+Point_Spread=pd.read_csv('/Users/jakeh/Desktop/PointValue.csv')
+Point_Spread.head(10)
+
+#NFL Spreads in ML Odds
+import pandas as pd
+Point_Spread=pd.read_csv('/Users/jakeh/Desktop/Moneylineconversiontable.csv')
+Point_Spread.head(10)
+
+#Below will be an example of how to find the spread of a game. 
+# We will say the Kansas City Chiefs will play the San Fransico 49's
+
+#I understand that finding the team by the array location is goingto seem silly. 
+#The reason why I am doing this is because the power ratings and position of the teams will change weekly. 
+
+#NFL PowerRatings
+import pandas as pd
+PR=pd.read_csv('/Users/jakeh/Desktop/PowerRatings.csv')
+PR.head(32)
+print(PR)
+
+#print(PR['PowerRating'].to_string(index=False)) How to print a column
+#print(PR['PowerRating'].iloc[0]) How to print a column and row
+
+# Variables 
+#Home Field Advatage, this is the average of the last season.
+## Note: Some teams have a higher or lower HFA.
+hfa = 2
+
+#Frist we must make sure we have the right teams and power ratings.
+print(PR.loc[0,:])
+print(PR.loc[2,:])
+
+#Next we will have to review injury reports and place a value on the injury reports.
+#Placing a value on the injury reports will require scrolling through X.
+#Feeds like Dr. David J. Chao - ProFootballDoc on X, adam schefter, and team pages. 
+
+kcInjury = -1
+sfInjury = -2
+
+game1 = (PR['PowerRating'].iloc[0]+hfa+kcInjury) - (PR['PowerRating'].iloc[2]+sfInjury)
+
+print(round(game1,2))
